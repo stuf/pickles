@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "karet": "^4.0.1",
+    "karet.util": "^0.19.1",
+    "kefir": "^3.8.6",
+    "node-sass": "^4.11.0",
+    "partial.lenses": "^14.17.0",
+    "ramda": "^0.26.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.3"
