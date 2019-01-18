@@ -1,0 +1,12 @@
+ol,
+ul,
+dl {
+  margin-bottom: 1em;
+}
+
+li > {
+  ol,
+  ul {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,7 @@
+button {
+  background: transparent;
+}
+
+button[disabled] {
+  cursor: default;
+}

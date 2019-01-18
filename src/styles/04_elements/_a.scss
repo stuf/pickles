@@ -1,0 +1,10 @@
+a {
+  color: inherit;
+  text-decoration: underline;
+
+  &:focus,
+  &:active,
+  &:hover {
+    // text-color: #f00;
+  }
+}

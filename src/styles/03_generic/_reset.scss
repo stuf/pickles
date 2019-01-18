@@ -1,0 +1,19 @@
+fieldset,
+ol,
+ul,
+dl {
+  margin: 0;
+}
+
+// Remove default table spacing
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Remove gap between container
+iframe,
+svg,
+video {
+  vertical-align: middle;
+}

@@ -1,35 +1,7 @@
-@import './typography';
-@import './mixins';
-@import './variables';
-@import './colors';
-
-body {
-  padding: 0;
-  margin: 0;
-  font-family: $font-family-sans-serif;
-  height: 100vh;
-  font-size: 82.5%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-pre,
-code {
-  font-family: $font-family-monospace;
-}
-
-#root {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  // border: solid 4px #00f;
-}
-
-@import './app';
-@import './ui/index';
-@import './components/index';
-@import './editor/index';
+@import '01_settings/_index';
+@import '02_tools/_index';
+@import '03_generic/_index';
+@import '04_elements/_index';
+@import '05_objects/_index';
+@import '06_components/_index';
+@import '07_utilities/_index';
