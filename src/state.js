@@ -1,9 +1,14 @@
 import * as U from 'karet.util';
 
-const state =
-  U.atom( { image: { width: 640, height: 480 }
-          } );
+const state = U.atom({
+  editor: {
+    width: 32,
+    height: 32,
+    scale: 16,
+    currentPosition: [0, 0],
+  }
+});
 
-state.log('state');
+state.debounce(500).log('state (debounced)');
 
 export default state;

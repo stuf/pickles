@@ -1,17 +1,35 @@
+@import './typography';
+@import './mixins';
+@import './variables';
+@import './colors';
+
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Avenir Next', sans-serif;
+  font-family: $font-family-sans-serif;
+  height: 100vh;
+  font-size: 82.5%;
 }
 
 * {
-  // border: solid 1px #f00;
   box-sizing: border-box;
 }
 
 pre,
 code {
-  font-family: 'Overpass Mono', monospace;
+  font-family: $font-family-monospace;
 }
 
+#root {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  // border: solid 4px #00f;
+}
+
+@import './app';
+@import './ui/index';
 @import './components/index';
+@import './editor/index';

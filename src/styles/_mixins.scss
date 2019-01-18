@@ -1,0 +1,27 @@
+// Typography
+
+$font-base: 'Inter UI';
+
+@mixin text-regular {
+  font-family: 'Inter UI', 'inter-ui-regular', sans-serif;
+}
+
+@mixin text-bold {
+  font-family: 'Inter UI', 'inter-ui-bold', sans-serif;
+}
+
+//
+
+@mixin element-pad {
+  padding: $element-padding;
+}
+
+//
+
+@mixin absolute-unit {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
