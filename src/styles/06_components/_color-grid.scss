@@ -28,3 +28,7 @@
 .color-grid__item {
   padding: 2px 0 0 2px;
 }
+
+.color-grid__palette-item {
+  border: solid remify(1px) rgba($color-cool-grey-600, .6);
+}

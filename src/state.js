@@ -6,6 +6,7 @@ const state = U.atom({
     height: 32,
     scale: 16,
     currentPosition: [0, 0],
+    colors: 8,
   }
 });
 

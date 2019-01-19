@@ -2,10 +2,12 @@ import * as React from 'karet';
 // eslint-disable-next-line
 import * as K from 'kefir';
 import * as U from 'karet.util';
-import * as R from 'ramda';
+import * as R from 'kefir.ramda';
 
 import * as S from '../shared';
 import * as M from './meta';
+import * as H from '../utils';
+import { color } from 'd3-color';
 import data from './mock-image';
 
 const Editor = ({ state, dispatch }) => {
@@ -13,8 +15,6 @@ const Editor = ({ state, dispatch }) => {
 
   const canvas = U.variable();
   const ctx = S.getCanvasContext('2d', canvas);
-  const putImageData = S.putContextImageData(data, 0, 0, ctx);
-
 
   // State slices
 
@@ -24,55 +24,57 @@ const Editor = ({ state, dispatch }) => {
   const currentPosition = M.currentPositionIn(state);
 
   // Event listeners
-
   const onCanvasClick = S.fromEvent('click', canvas);
   const onCanvasMouseMove = S.fromEvent('mousemove', canvas);
 
-  //
-
-  const positions = [
-    [onCanvasMouseMove, 'clientX', 'clientY'],
-    [S.getBoundingClientRect(canvas), 'left', 'top'],
-  ];
-
-  /**
-   * Don't ask. Wrote this when sick.
-   * @type {K.Property<[number, number], never>}
-   */
-  const canvasCoordinates = U.combine(
-    R.map(R.apply(S.viewOffset2), positions),
-    R.pipe(R.zip, R.map(R.pipe(R.apply(R.subtract), Math.ceil))),
-  );
-
-  /**
-   * Don't. Ask.
-   * @type {K.Property<[number, number], never>}
-   */
-  const pixelCoordinates = U.combine(
-    [canvasCoordinates, [scale, scale]],
-    R.pipe(R.zip, R.map(R.pipe(R.apply(R.divide), Math.floor))),
-  );
+  // Track mouse movement and click coordinates
+  const movedCoordinates = H.getCoordinatesRelative(canvas, onCanvasMouseMove, scale);
+  const clickedCoordinates = H.getCoordinatesRelative(canvas, onCanvasClick, scale);
 
   //
 
+  const scaleWith = n => R.multiply(scale, n);
+  const scaledPos = {
+    x: R.multiply(M.fstIn(M.sndIn(movedCoordinates)), scale),
+    y: R.multiply(M.sndIn(M.sndIn(movedCoordinates)), scale),
+  }
+
+  // Create pixel with the selected color and clicked position.
+  const createPixelOnClickedCoords = U.mapValue(([x, y]) =>
+    [H.mkPixel(color('#55415f')), x, y], M.sndIn(clickedCoordinates));
+
+  // Side-effects
+
+  /**
+   * Put placeholder/background image in canvas
+   */
+  const putImageData = S.putContextImageData(data, 0, 0, ctx);
+
+  /**
+   * Update the current mouse coordinates in the editor state
+   */
   const updatePixelPosition = U.thru(
-    pixelCoordinates,
+    M.sndIn(movedCoordinates),
     U.set(currentPosition),
   );
 
-  const multiply = U.liftRec(R.multiply);
-  const scaleWith = n => multiply(scale, n);
+  /**
+   * Draw a pixel to the rendering context
+   */
+  const drawPixelOnClick = U.combine(
+    [createPixelOnClickedCoords, ctx],
+    ([d, x, y], c) => c.putImageData(d, x, y),
+  );
 
-  const scaledPos = {
-    x: multiply(M.fstIn(pixelCoordinates), scale),
-    y: multiply(M.sndIn(pixelCoordinates), scale),
-  }
+  //
 
   return (
     <div className="editor-root">
+      {/* Merge all side effects together into a sink. */}
       {U.sink(U.parallel([
         putImageData,
         updatePixelPosition,
+        drawPixelOnClick,
       ]))}
 
       <section className="editor-wrapper">

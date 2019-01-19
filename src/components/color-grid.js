@@ -9,9 +9,11 @@ const ColorGrid = ({ colors }) =>
         U.mapElems((it, i) =>
           <li key={i}
               className="color-grid__item">
-            <div style={{ border: 'dashed 1px #f00', height: '100%' }}>
-              {i}
-            </div>
+            <div className="color-grid__palette-item"
+                 style={{
+                   height: '100%',
+                   backgroundColor: it.toString(),
+                 }} />
           </li>)
       )}
     </ul>

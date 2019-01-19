@@ -40,3 +40,4 @@ export const getBoundingClientRect = U.liftRec(R.invoker(0, 'getBoundingClientRe
 // Context
 
 export const putContextImageData = U.liftRec(R.invoker(3, 'putImageData'));
+export const putImageDataToContext = (ctx, data, x, y) => putContextImageData(data, x, y, ctx);
