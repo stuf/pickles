@@ -9,13 +9,22 @@ $_32px: remify(32px);   // 4.0 × base
 
 $html-font-size: 62.5%;
 
-$font-family-sans-serif: 'Inter UI', sans-serif;
-$font-family-serif: serif;
-$font-family-monospace: 'Dank Mono', 'IBM Plex Mono', 'Source Code Pro', monospace;
-$font-family-base: $font-family-sans-serif;
+$font-family-sans-serif: 'Inter UI', sans-serif !default;
+$font-family-serif: serif !default;
+$font-family-monospace: 'Dank Mono', 'IBM Plex Mono', 'Source Code Pro', monospace !default;
+$font-family-base: $font-family-sans-serif !default;
 
-$font-size-base: $_16px;
+$font-size-base: remify(14px) !default;
 
 //
 
-$element-padding: .4rem !default;
+$element-padding: 1rem !default;
+
+// Application layout
+
+$application-grid-template-columns: auto 24rem;
+$application-grid-template-rows: 4rem auto 3.5rem;
+
+// Docked panels
+
+$border-panel-border: solid 2px $color-cool-grey-300;

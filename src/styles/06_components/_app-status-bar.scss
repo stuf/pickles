@@ -1,0 +1,13 @@
+.application__status-bar {
+  grid-column-end: span 2;
+  padding: $_8px;
+  border-top: $border-panel-border;
+}
+
+.application__status-bar__content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.application__status-bar__item {}

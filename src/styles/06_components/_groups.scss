@@ -1,0 +1,17 @@
+.group-section {
+  margin-top: .3rem;
+}
+
+.group-section__header,
+.group-section__content {
+  padding: $_8px;
+}
+
+.group-section__header {
+  border-bottom: solid 1px $color-cool-grey-200;
+  font-weight: 700;
+}
+
+.group-section__content {
+  // border: solid 1px #0f0;
+}

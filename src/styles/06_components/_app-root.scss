@@ -1,0 +1,7 @@
+.application-root {
+  display: grid;
+  // border: solid 4px #f00;
+  height: 100%;
+  grid-template-columns: $application-grid-template-columns;
+  grid-template-rows: $application-grid-template-rows;
+}
