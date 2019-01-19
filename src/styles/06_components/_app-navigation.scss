@@ -1,4 +1,26 @@
 .application__navigation {
   grid-column-end: span 2;
   border-bottom: $border-panel-border;
+  // padding-left: remify(64px);
+}
+
+.application__navigation-items {
+  @include horizontal-list;
+  display: flex;
+  height: 100%;
+}
+
+.application__navigation-item {
+  height: 100%;
+}
+
+.application__navigation-button {
+  height: 100%;
+  @include pad-x($_12px);
+  font-size: $font-size-base;
+  border: none;
+
+  &:hover span {
+    font-weight: bold;
+  }
 }
