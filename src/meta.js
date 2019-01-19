@@ -9,3 +9,5 @@ export const Image = {
 };
 
 export const editorStateIn = U.view('editor');
+
+export const currentCursorPositionIn = U.view(['editor', 'currentPosition']);

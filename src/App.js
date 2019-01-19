@@ -4,42 +4,36 @@ import * as U from 'karet.util';
 import * as R from 'kefir.ramda';
 
 import * as M from './meta';
+import * as H from './utils';
+import { Group, StatusBar, StatusBarItem } from './components';
 import Editor from './editor';
 
-const App = ({ state }) =>
-  <main className="application-root">
-    <header className="application__navigation">
-    </header>
+const App = ({ state }) => {
+  const currentCursorPosition = M.currentCursorPositionIn(state);
 
-    <div className="application__main">
-      <Editor state={M.editorStateIn(state)} />
-    </div>
+  return (
+    <main className="application-root">
+      <header className="application__navigation">
+      </header>
 
-    <section className="application__tools">
-      <section className="group-section">
-        <header className="group-section__header">
-          Heading
-        </header>
-
-        <div className="group-section__content">
-          Content
-        </div>
-      </section>
-    </section>
-
-    <footer className="application__status-bar">
-      <div className="application__status-bar__content">
-        <div className="application__status-bar__item">
-          {U.thru(
-            state,
-            U.view(['editor', 'currentPosition']),
-            R.join(', '),
-            R.concat('('),
-            R.flip(R.concat)(')'),
-          )}
-        </div>
+      <div className="application__main">
+        <Editor state={M.editorStateIn(state)} />
       </div>
-    </footer>
-  </main>;
+
+      <section className="application__tools">
+        <Group title="Color"
+              collapsible={true}>
+          Content
+        </Group>
+      </section>
+
+      <StatusBar>
+        <StatusBarItem>
+          {R.apply(H.showTuple, currentCursorPosition)}
+        </StatusBarItem>
+      </StatusBar>
+    </main>
+  );
+};
 
 export default App;

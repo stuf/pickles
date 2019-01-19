@@ -41,7 +41,7 @@ const Editor = ({ state, dispatch }) => {
    */
   const canvasCoordinates = U.combine(
     R.map(R.apply(S.viewOffset2), positions),
-    R.pipe(R.zip,R.map(R.pipe(R.apply(R.subtract), Math.ceil))),
+    R.pipe(R.zip, R.map(R.pipe(R.apply(R.subtract), Math.ceil))),
   );
 
   /**
@@ -60,11 +60,6 @@ const Editor = ({ state, dispatch }) => {
     U.set(currentPosition),
   );
 
-  const init = U.parallel([
-    putImageData,
-    updatePixelPosition,
-  ]);
-
   const multiply = U.liftRec(R.multiply);
   const scaleWith = n => multiply(scale, n);
 
@@ -75,7 +70,10 @@ const Editor = ({ state, dispatch }) => {
 
   return (
     <div className="editor-root">
-      {U.sink(init)}
+      {U.sink(U.parallel([
+        putImageData,
+        updatePixelPosition,
+      ]))}
 
       <section className="editor-wrapper">
         <div className="editor-body">
