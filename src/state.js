@@ -6,10 +6,13 @@ const state = U.atom({
     height: 32,
     scale: 16,
     currentPosition: [0, 0],
-    colors: 8,
+    current: {
+      position: [0, 0],
+      color: null,
+    },
   }
 });
 
-state.debounce(500).log('state (debounced)');
+state.debounce(500).log('state');
 
 export default state;
