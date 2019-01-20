@@ -1,6 +1,5 @@
 import * as React from 'karet';
 
-import * as U from 'karet.util';
 import * as R from 'kefir.ramda';
 import { color } from 'd3-color';
 
@@ -38,6 +37,9 @@ const App = ({ state }) => {
           </li>
         </ul>
       </header>
+
+      <div className="application__toolbar">
+      </div>
 
       <div className="application__main">
         <Editor state={M.editorStateIn(state)} />

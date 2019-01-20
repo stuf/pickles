@@ -1,5 +1,5 @@
 .application__status-bar {
-  grid-column-end: span 2;
+  grid-column-end: $application-grid-row-span;
   padding: $_8px;
   border-top: $border-panel-border;
 }

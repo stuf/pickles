@@ -1,15 +1,18 @@
+$color-grid-template-column-size: minmax(2.5rem, 1fr);
+
 .color-grid {
-  border: solid 1px #f00;
+  // border: solid 1px #f00;
 }
 
 .color-grid__content {
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, $color-grid-template-column-size);
   grid-auto-rows: 1fr;
   padding-right: 2px;
   margin-bottom: 2px;
+  margin-left: -2px;
 }
 
 .color-grid__content::before {

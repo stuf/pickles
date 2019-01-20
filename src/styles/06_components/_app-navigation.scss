@@ -1,5 +1,5 @@
 .application__navigation {
-  grid-column-end: span 2;
+  grid-column-end: $application-grid-row-span;
   border-bottom: $border-panel-border;
   // padding-left: remify(64px);
 }

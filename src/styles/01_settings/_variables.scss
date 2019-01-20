@@ -22,8 +22,9 @@ $element-padding: 1rem !default;
 
 // Application layout
 
-$application-grid-template-columns: auto 24rem;
+$application-grid-template-columns: 6rem auto 24rem;
 $application-grid-template-rows: 4rem auto 3.5rem;
+$application-grid-row-span: span 3;
 
 // Docked panels
 
