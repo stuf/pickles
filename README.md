@@ -20,12 +20,12 @@ yarn start
 ## To do
 
   - Functionality
-    - Draw on canvas ([`be4dab5`](be4dab5))
-    - Save canvas contents as file (921ab63468efac2eb95e7fd08bc0f1abcf215fd7)
-    - Undo/Redo support (a6565a4)
+    - ~~Draw on canvas~~
+    - ~~Save canvas contents as file~~
+    - ~~Undo/Redo support~~
   - UI
     - Palette picker
-    - Color picker (f4ba66f)
+    - ~~Color picker~~
     - Undo/Redo functions
   - Behavior
     - Tool keyboard shortcuts
