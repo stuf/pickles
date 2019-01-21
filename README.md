@@ -1,6 +1,15 @@
 
 # Pickles
 
+## Contents
+
+  - [Getting Started](#getting-started)
+
 ## Getting started
 
-## Contents
+```sh
+git clone https://github.com/stuf/pickles.git
+cd pickles
+yarn
+yarn start
+```
