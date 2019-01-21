@@ -28,12 +28,10 @@ const Editor = ({ state, dispatch }) => {
   // Event listeners
   const onCanvasClick = S.fromEvent('click', canvas);
   const onCanvasMouseMove = S.fromEvent('mousemove', canvas);
-  const onCanvasMouseUp = S.fromEvent('mouseup', canvas);
 
   // Track mouse movement and click coordinates
   const movedCoordinates = H.getCoordinatesRelative(canvas, onCanvasMouseMove, scale);
   const clickedCoordinates = H.getCoordinatesRelative(canvas, onCanvasClick, scale);
-  const updateStateFromCanvas = onCanvasMouseUp.map(() => 'yes');
 
   //
 
@@ -43,7 +41,7 @@ const Editor = ({ state, dispatch }) => {
     y: R.multiply(M.sndIn(M.sndIn(movedCoordinates)), scale),
   }
 
-  // Create pixel with the selected color and clicked position.
+  // Create pixel with the selected color and clicked position
 
   const createPixelOnClickedCoords = U.thru(
     U.combine([M.sndIn(clickedCoordinates), currentColor],
@@ -71,36 +69,44 @@ const Editor = ({ state, dispatch }) => {
   /**
    * Draw a pixel to the rendering context
    */
-  const drawPixelOnClick = U.combine(
-    [createPixelOnClickedCoords, ctx],
-    ([d, x, y], c) => c.putImageData(d, x, y),
-  ).delay(100);
+  const drawPixelOnClick = U.thru(
+    U.combine(
+      [createPixelOnClickedCoords, ctx],
+      ([d, x, y], c) => c.putImageData(d, x, y),
+    ),
+    U.delay(50),
+  );
 
   const updateImageBlob = U.thru(
     U.combine(
-      [canvas, drawPixelOnClick],
-      R.identity,
+      [canvas, createPixelOnClickedCoords],
+      R.unapply(R.identity),
     ),
-    U.flatMapLatest(x => {
-      console.log({ x });
-      const blob = U.variable();
-      x.toBlob(b => blob.set(b));
+    U.show,
+    U.mapValue(R.head),
+    U.flatMapLatest(S.getPngFromCanvas),
+    U.on({ value: v => currentBlob.set(v) }),
+  );
 
-      return blob;
-    }),
-  ).log('updateimage');
+  //
+
+  /**
+   * List of observable side-effects that should be subscribed to
+   * @type {Array<K.Property<any, any>>}
+   */
+  const sideEffs = [
+    putImageData,
+    updatePixelPosition,
+    drawPixelOnClick,
+    updateImageBlob,
+  ];
 
   //
 
   return (
     <div className="editor-root">
       {/* Merge all side effects together into a sink. */}
-      {U.sink(U.parallel([
-        putImageData,
-        updatePixelPosition,
-        drawPixelOnClick,
-        updateImageBlob,
-      ]))}
+      {U.sink(U.parallel(sideEffs))}
 
       <section className="editor-wrapper">
         <div className="editor-body">

@@ -56,17 +56,22 @@ const App = ({ state }) => {
     shouldTrySaveImage,
     U.mapValue(msg => ({ ...msg, blob: current.blob.get() })),
     U.skipUnless(R.identity),
-    U.on({ value: v => console.log({ v }) })
+    U.show,
+    U.on({ value: ({ blob }) => saveAs(blob, `${+new Date()}.png`) })
   );
+
+  //
+
+  const sideEffs = [
+    trySaveImage,
+    enableUndo,
+  ];
 
   //
 
   return (
     <main className="application-root">
-      {U.sink(U.parallel([
-        trySaveImage,
-        enableUndo,
-      ]))}
+      {U.sink(U.parallel(sideEffs))}
       <header className="application__navigation">
         <ul className="application__navigation-items">
           <li className="application__navigation-item">
@@ -92,10 +97,15 @@ const App = ({ state }) => {
           <ColorGrid colors={colors}
                      selected={current.selectedColor} />
         </Group>
+
         <Group title="Save image">
-          <button onClick={() => E.dispatch({ type: 'save-image' })}>
+          <button onClick={() => E.dispatch({ type: 'save-image' })}
+                  className="button--primary">
             Save image to disk
           </button>
+        </Group>
+
+        <Group title="Stats">
         </Group>
       </section>
 
