@@ -6,11 +6,9 @@ import state, { initialState } from './state';
 //
 
 const history = U.atom(H.init({}, initialState));
+const present = U.view(H.present, history);
 
-const reactToState = U.thru(
-  state,
-  U.set(U.view(H.present, history)),
-);
+const reactToState = U.thru(state, U.set(U.view(H.present, history)),);
 
 state.onValue(v => history.view(H.present).set(v));
 
