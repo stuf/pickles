@@ -1,17 +1,21 @@
 import * as U from 'karet.util';
+import * as L from 'partial.lenses';
+import { color } from 'd3-color';
 
-const state = U.atom({
+export const initialState = {
   editor: {
     width: 32,
     height: 32,
     scale: 16,
-    currentPosition: [0, 0],
     current: {
       position: [0, 0],
-      color: null,
+      color: color('#f00'),
+      blob: null,
     },
-  }
-});
+  },
+};
+
+const state = U.atom(initialState);
 
 state.debounce(500).log('state');
 
