@@ -6,10 +6,8 @@ $_item-padding: $_8px;
 }
 
 .application__status-bar__content {
-  display: grid;
-  height: 100%;
-  align-items: center;
-  grid-template-columns: 1.5fr 1.5fr 4fr;
+  @include horizontal-list;
+  display: flex;
 }
 
 .application__status-bar__item {

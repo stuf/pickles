@@ -1,3 +1,29 @@
+// Colors
+
+$text-color: rgba(0, 0, 0, .87) !default;
+
+$color-cool-grey-100: #F5F7FA !default;
+$color-cool-grey-200: #E4E7EB !default;
+$color-cool-grey-300: #CBD2D9 !default;
+$color-cool-grey-400: #9AA5B1 !default;
+$color-cool-grey-500: #7B8794 !default;
+$color-cool-grey-600: #616E7C !default;
+$color-cool-grey-700: #52606D !default;
+$color-cool-grey-800: #3E4C59 !default;
+$color-cool-grey-900: #323F4B !default;
+
+$color-pink-100: #DAC4FF !default;
+$color-pink-200: #B990FF !default;
+$color-pink-300: #A368FC !default;
+$color-pink-400: #9446ED !default;
+$color-pink-500: #8719E0 !default;
+$color-pink-600: #7A0ECC !default;
+$color-pink-700: #690CB0 !default;
+$color-pink-800: #580A94 !default;
+$color-pink-900: #44056E !default;
+
+//
+
 $_4px: remify(4px);     // 0.5 × base
 $_8px: remify(8px);     // 1.0 × base
 $_12px: remify(12px);   // 1.5 × base
