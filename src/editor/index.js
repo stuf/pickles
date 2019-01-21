@@ -3,11 +3,11 @@ import * as React from 'karet';
 import * as K from 'kefir';
 import * as U from 'karet.util';
 import * as R from 'kefir.ramda';
+import { saveAs } from 'file-saver';
 
 import * as S from '../shared';
 import * as M from './meta';
 import * as H from '../utils';
-import { color } from 'd3-color';
 import data from './mock-image';
 
 const Editor = ({ state, dispatch }) => {
@@ -22,14 +22,18 @@ const Editor = ({ state, dispatch }) => {
   const height = M.heightIn(state);
   const scale = M.scaleIn(state);
   const currentPosition = M.currentPositionIn(state);
+  const currentColor = M.currentColorIn(state);
+  const currentBlob = M.currentBlobIn(state);
 
   // Event listeners
   const onCanvasClick = S.fromEvent('click', canvas);
   const onCanvasMouseMove = S.fromEvent('mousemove', canvas);
+  const onCanvasMouseUp = S.fromEvent('mouseup', canvas);
 
   // Track mouse movement and click coordinates
   const movedCoordinates = H.getCoordinatesRelative(canvas, onCanvasMouseMove, scale);
   const clickedCoordinates = H.getCoordinatesRelative(canvas, onCanvasClick, scale);
+  const updateStateFromCanvas = onCanvasMouseUp.map(() => 'yes');
 
   //
 
@@ -40,8 +44,14 @@ const Editor = ({ state, dispatch }) => {
   }
 
   // Create pixel with the selected color and clicked position.
-  const createPixelOnClickedCoords = U.mapValue(([x, y]) =>
-    [H.mkPixel(color('#55415f')), x, y], M.sndIn(clickedCoordinates));
+
+  const createPixelOnClickedCoords = U.thru(
+    U.combine([M.sndIn(clickedCoordinates), currentColor],
+      ([x, y], b) => [b, H.mkPixel(b), x, y]),
+    U.skipDuplicates(([color1, ...xs], [color2, ...ys]) =>
+      color1 !== color2 && R.equals(R.tail(xs), R.tail(ys))),
+    U.mapValue(([x, ...xs]) => xs),
+  );
 
   // Side-effects
 
@@ -64,7 +74,21 @@ const Editor = ({ state, dispatch }) => {
   const drawPixelOnClick = U.combine(
     [createPixelOnClickedCoords, ctx],
     ([d, x, y], c) => c.putImageData(d, x, y),
-  );
+  ).delay(100);
+
+  const updateImageBlob = U.thru(
+    U.combine(
+      [canvas, drawPixelOnClick],
+      R.identity,
+    ),
+    U.flatMapLatest(x => {
+      console.log({ x });
+      const blob = U.variable();
+      x.toBlob(b => blob.set(b));
+
+      return blob;
+    }),
+  ).log('updateimage');
 
   //
 
@@ -75,6 +99,7 @@ const Editor = ({ state, dispatch }) => {
         putImageData,
         updatePixelPosition,
         drawPixelOnClick,
+        updateImageBlob,
       ]))}
 
       <section className="editor-wrapper">

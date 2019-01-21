@@ -1,15 +1,28 @@
 import * as React from 'karet';
-
+import * as U from 'karet.util';
 import * as R from 'kefir.ramda';
+import * as L from 'partial.lenses';
 import { color } from 'd3-color';
+import { saveAs } from 'file-saver';
 
+import Effs, * as E from './effects';
+import enableUndo from './undo';
 import * as M from './meta';
 import * as H from './utils';
-import { Group, StatusBar, StatusBarItem, ColorGrid } from './components';
 import Editor from './editor';
+import Toolbar from './toolbar';
+import { IconType } from './constants';
+import {
+  ColorGrid,
+  Group,
+  Icon,
+  StatusBar,
+  StatusBarItem,
+} from './components';
 
 //
 
+// FIXME: Remove me
 const colors = [
   color('#000000'),
   color('#55415f'),
@@ -24,37 +37,74 @@ const colors = [
 //
 
 const App = ({ state }) => {
-  const currentCursorPosition = M.currentCursorPositionIn(state);
+  const current = {
+    editorState: M.editorStateIn(state),
+    cursorPosition: M.currentCursorPositionIn(state),
+    canvasSize: M.currentCanvasSizeIn(state),
+    selectedColor: M.currentColorIn(state),
+    blob: M.currentBlobIn(state),
+  };
+
+  // Effect "subscription" temporary area
+
+  const shouldTrySaveImage = U.thru(
+    Effs,
+    U.skipUnless(R.whereEq({ type: 'save-image' })),
+  );
+
+  const trySaveImage = U.thru(
+    shouldTrySaveImage,
+    U.mapValue(msg => ({ ...msg, blob: current.blob.get() })),
+    U.skipUnless(R.identity),
+    U.on({ value: v => console.log({ v }) })
+  );
+
+  //
 
   return (
     <main className="application-root">
+      {U.sink(U.parallel([
+        trySaveImage,
+        enableUndo,
+      ]))}
       <header className="application__navigation">
         <ul className="application__navigation-items">
           <li className="application__navigation-item">
             <button className="application__navigation-button">
-              <span>Poop</span>
+              <span><code>#pickles</code></span>
             </button>
           </li>
         </ul>
       </header>
 
-      <div className="application__toolbar">
-      </div>
+      <Toolbar>
+        <Icon name={IconType.EDIT} />
+        <Icon name={IconType.CROP} />
+      </Toolbar>
 
       <div className="application__main">
-        <Editor state={M.editorStateIn(state)} />
+        <Editor state={current.editorState} />
       </div>
 
       <section className="application__tools">
         <Group title="Color"
-              collapsible={true}>
-          <ColorGrid colors={colors} />
+               collapsible={true}>
+          <ColorGrid colors={colors}
+                     selected={current.selectedColor} />
+        </Group>
+        <Group title="Save image">
+          <button onClick={() => E.dispatch({ type: 'save-image' })}>
+            Save image to disk
+          </button>
         </Group>
       </section>
 
       <StatusBar>
         <StatusBarItem>
-          {R.apply(H.showTuple, currentCursorPosition)}
+          Mouse: {R.apply(H.showTuple, current.cursorPosition)}
+        </StatusBarItem>
+        <StatusBarItem>
+          Canvas size: {R.apply(H.showTuple, R.values(current.canvasSize))}
         </StatusBarItem>
       </StatusBar>
     </main>
