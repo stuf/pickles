@@ -1,0 +1,20 @@
+@mixin square-grid ($size) {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, $size);
+  grid-auto-rows: 1fr;
+
+  &::before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+
+  &:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+}

@@ -1,31 +1,10 @@
-$color-grid-template-column-size: minmax(2.5rem, 1fr);
-
-.color-grid {
-  // border: solid 1px #f00;
-}
+.color-grid {}
 
 .color-grid__content {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, $color-grid-template-column-size);
-  grid-auto-rows: 1fr;
+  @include square-grid($square-grid-size);
   padding-right: 2px;
   margin-bottom: 2px;
   margin-left: -2px;
-}
-
-.color-grid__content::before {
-  content: '';
-  width: 0;
-  padding-bottom: 100%;
-  grid-row: 1 / 1;
-  grid-column: 1 / 1;
-}
-
-.color-grid__item:first-child {
-  grid-row: 1 / 1;
-  grid-column: 1 / 1;
 }
 
 .color-grid__item {
@@ -34,4 +13,9 @@ $color-grid-template-column-size: minmax(2.5rem, 1fr);
 
 .color-grid__palette-item {
   border: solid remify(1px) rgba($color-cool-grey-600, .6);
+}
+
+.palette-item--selected {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, .2);
 }

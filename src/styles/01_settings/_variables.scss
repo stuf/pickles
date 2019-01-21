@@ -4,6 +4,8 @@ $_12px: remify(12px);   // 1.5 × base
 $_16px: remify(16px);   // 2.0 × base
 $_24px: remify(24px);   // 3.0 × base
 $_32px: remify(32px);   // 4.0 × base
+$_40px: remify(40px);   // 5.0 × base
+$_48px: remify(48px);   // 6.0 × base
 
 //
 
@@ -22,10 +24,22 @@ $element-padding: 1rem !default;
 
 // Application layout
 
-$application-grid-template-columns: 6rem auto 24rem;
+$application-grid-template-columns: 10rem auto 24rem;
 $application-grid-template-rows: 4rem auto 3.5rem;
 $application-grid-row-span: span 3;
 
+// Grids
+
+$square-grid-size: minmax(2.5rem, 1fr);
+$square-grid-size-medium: minmax(5rem, 1fr);
+
 // Docked panels
 
-$border-panel-border: solid 2px $color-cool-grey-300;
+$docked-border-color: $color-cool-grey-300;
+$docked-border-width: remify(1px);
+
+$docked-border-thin: solid 1px $docked-border-color;
+$docked-border: solid 2px $docked-border-color;
+$docked-border-thick: solid 4px $docked-border-color;
+
+$border-panel-border: solid 2px $docked-border-color;

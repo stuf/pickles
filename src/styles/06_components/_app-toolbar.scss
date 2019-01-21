@@ -1,0 +1,20 @@
+.application__toolbar {
+}
+
+.toolbar {}
+
+.toolbar__icon-grid {
+  @include square-grid($square-grid-size-medium);
+}
+
+.toolbar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.toolbar__icon .icon {
+  border: solid 1px #f00;
+  font-size: $_40px;
+}
