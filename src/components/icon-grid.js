@@ -2,15 +2,15 @@ import * as React from 'karet';
 import * as U from 'karet.util';
 
 const IconGrid = ({ elements }) =>
-  <ul className="icon-grid">
+  <div className="icon-grid">
     {U.thru(
       elements,
       U.mapElems((el, i) =>
-        <li key={i}
+        <div key={i}
             className="icon-grid__element">
           {el}
-        </li>)
+        </div>)
     )}
-  </ul>;
+  </div>;
 
 export default IconGrid;

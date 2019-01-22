@@ -1,3 +1,4 @@
+export { default as Alert } from './alert';
 export { default as ColorGrid } from './color-grid';
 export { default as Group } from './group';
 export { default as Icon } from './icon';
