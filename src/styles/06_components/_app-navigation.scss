@@ -5,13 +5,13 @@
 }
 
 .application__navigation-items {
-  @include horizontal-list;
   display: flex;
   height: 100%;
+  padding: remify(6px);
 }
 
 .application__navigation-item {
-  height: 100%;
+  // height: 100%;
 }
 
 .application__navigation-button {

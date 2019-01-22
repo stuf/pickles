@@ -1,7 +1,5 @@
 // Colors
 
-$text-color: rgba(0, 0, 0, .87) !default;
-
 $color-cool-grey-100: #F5F7FA !default;
 $color-cool-grey-200: #E4E7EB !default;
 $color-cool-grey-300: #CBD2D9 !default;
@@ -21,6 +19,21 @@ $color-pink-600: #7A0ECC !default;
 $color-pink-700: #690CB0 !default;
 $color-pink-800: #580A94 !default;
 $color-pink-900: #44056E !default;
+
+$color-white: #fff;
+$color-black: #000;
+
+//
+
+$opacity-primary: .87;
+$opacity-secondary: .54;
+$opacity-divider: .23;
+
+$text-color-primary: rgba($color-black, $opacity-primary);
+$text-color-primary: rgba($color-black, $opacity-secondary);
+$text-color-disabled: rgba($color-black, $opacity-divider);
+
+$text-color-base: $text-color-primary;
 
 //
 
@@ -44,20 +57,47 @@ $font-family-base: $font-family-sans-serif !default;
 
 $font-size-base: remify(14px) !default;
 
+// Weights
+
+$font-weight-hairline: 100;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 700;
+$font-weight-bold: 800;
+$font-weight-black: 900;
+
 //
 
 $element-padding: 1rem !default;
 
 // Application layout
 
+$application-header-height: 5rem;
+
 $application-grid-template-columns: 10rem auto 24rem;
-$application-grid-template-rows: 4rem auto 3.5rem;
+$application-grid-template-rows: $application-header-height auto 3.5rem;
 $application-grid-row-span: span 3;
 
 // Grids
 
 $square-grid-size: minmax(2.5rem, 1fr);
 $square-grid-size-medium: minmax(5rem, 1fr);
+
+// Buttons
+
+$button-font-size: remify(14px);
+$button-font-weight: bold;
+$button-padding: $_8px $_12px;
+$button-border-radius: remify(4px);
+$button-border-color: $color-cool-grey-700;
+$button-text-color: $color-cool-grey-700;
+
+$button-hover-background: $color-cool-grey-700;
+$button-hover-text-color: $color-white;
+
+$button-disabled-border-color: $color-cool-grey-400;
+$button-disabled-background: $color-cool-grey-300;
+$button-disabled-text-color: $color-cool-grey-100;
 
 // Docked panels
 
@@ -69,3 +109,9 @@ $docked-border: solid 2px $docked-border-color;
 $docked-border-thick: solid 4px $docked-border-color;
 
 $border-panel-border: solid 2px $docked-border-color;
+
+// Components
+
+$alert-text-color: $color-white;
+$alert-background: $color-cool-grey-500;
+$alert-border-color: $color-cool-grey-700;

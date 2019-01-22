@@ -1,7 +1,8 @@
 .color-grid {}
 
 .color-grid__content {
-  @include square-grid($square-grid-size);
+  @include horizontal-list;
+  display: flex;
   padding-right: 2px;
   margin-bottom: 2px;
   margin-left: -2px;
@@ -9,10 +10,13 @@
 
 .color-grid__item {
   padding: 2px 0 0 2px;
+  width: 3.2rem;
+  height: 3.2rem;
 }
 
 .color-grid__palette-item {
-  border: solid remify(1px) rgba($color-cool-grey-600, .6);
+  border: solid remify(1px) rgba($color-cool-grey-500, .6);
+  @include button;
 }
 
 .palette-item--selected {

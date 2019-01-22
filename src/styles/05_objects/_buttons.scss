@@ -1,7 +1,13 @@
-.button--primary {
-
+.button {
+  @include button;
 }
 
-.button--secondary {
+.button {
+  .button--primary {
+    @include button;
+  }
 
+  .button--secondary {
+    @include button--secondary;
+  }
 }

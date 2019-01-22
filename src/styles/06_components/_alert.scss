@@ -1,0 +1,26 @@
+$alert-width-base: 30rem;
+$alert-padding-base: .75rem 1rem;
+$alert-header-padding: $alert-padding-base;
+$alert-body-padding: $alert-padding-base;
+
+.alert {
+  position: fixed;
+  border: solid remify(1px) $alert-border-color;
+  background: $alert-background;
+  color: $alert-text-color;
+  width: $alert-width-base;
+  transform: translateX(-50%);
+  left: 50%;
+  top: $application-header-height + 1.5rem;
+  border-radius: .5rem;
+}
+
+.alert__header {
+  font-weight: $font-weight-medium;
+  margin-bottom: 1rem;
+  padding: $alert-header-padding;
+}
+
+.alert__body {
+  padding: $alert-body-padding;
+}
