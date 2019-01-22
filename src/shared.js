@@ -11,7 +11,7 @@ export const I = a => a;
 export const A = R.curry((f, a) => f(a));
 // export const K = R.curry((a, b) => a);
 export const B = R.curry((f, g, a) => f(g(a)));
-export const C = R.curry((b, a, f) => f(a, b));
+export const C = R.curry((f, b, a) => f(a, b));
 
 /**
  * Take the first argument this function has been called with.
