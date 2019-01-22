@@ -2,6 +2,11 @@
   "name": "picksel",
   "version": "0.1.0",
   "private": true,
+  "keywords": [
+    "react",
+    "frp",
+    "observable"
+  ],
   "dependencies": {
     "d3-color": "^1.2.3",
     "file-saver": "^2.0.0",
@@ -36,7 +41,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "cz-conventional-changelog": "2.1.0"
+    "cz-conventional-changelog": "2.1.0",
+    "react-test-renderer": "^16.7.0"
   },
   "config": {
     "commitizen": {

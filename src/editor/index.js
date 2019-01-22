@@ -3,7 +3,6 @@ import * as React from 'karet';
 import * as K from 'kefir';
 import * as U from 'karet.util';
 import * as R from 'kefir.ramda';
-import { saveAs } from 'file-saver';
 
 import * as S from '../shared';
 import * as M from './meta';

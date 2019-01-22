@@ -1,5 +1,4 @@
 import * as U from 'karet.util';
-import * as L from 'partial.lenses';
 import { color } from 'd3-color';
 
 export const initialState = {

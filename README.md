@@ -27,6 +27,9 @@ yarn start
     - Palette picker
     - ~~Color picker~~
     - Undo/Redo functions
+    - Pixel grid
+    - Pixel rulers
+    - Axis helper guidelines
   - Behavior
     - Tool keyboard shortcuts
     - Allow drawing with mouse button enabled

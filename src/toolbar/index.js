@@ -3,16 +3,16 @@ import * as U from 'karet.util';
 
 const Toolbar = ({ children }) =>
   <div className="application__toolbar">
-    <ul className="toolbar__icon-grid">
+    <div className="toolbar__icon-grid">
       {U.thru(
         children,
         U.mapElems((child, i) =>
-          <li key={i}
+          <div key={i}
               className="toolbar__icon">
             {child}
-          </li>)
+          </div>)
       )}
-    </ul>
+    </div>
   </div>;
 
 export default Toolbar;

@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import * as K from 'kefir';
 import * as U from 'karet.util';
 import * as R from 'ramda';

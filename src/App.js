@@ -1,7 +1,6 @@
 import * as React from 'karet';
 import * as U from 'karet.util';
 import * as R from 'kefir.ramda';
-import * as L from 'partial.lenses';
 import { color } from 'd3-color';
 import { saveAs } from 'file-saver';
 
@@ -12,7 +11,9 @@ import * as H from './utils';
 import Editor from './editor';
 import Toolbar from './toolbar';
 import { IconType } from './constants';
+import { Button } from './components/ui';
 import {
+  Alert,
   ColorGrid,
   Group,
   Icon,
@@ -72,14 +73,19 @@ const App = ({ state }) => {
   return (
     <main className="application-root">
       {U.sink(U.parallel(sideEffs))}
+      <Alert title="Test alert">
+        Foo
+      </Alert>
+
       <header className="application__navigation">
-        <ul className="application__navigation-items">
-          <li className="application__navigation-item">
-            <button className="application__navigation-button">
-              <span><code>#pickles</code></span>
-            </button>
-          </li>
-        </ul>
+        <nav className="application__navigation-items">
+          <Button className="application__navigation-item">
+            Default
+          </Button>
+          <Button disabled={true} className="application__navigation-item">
+            Disabled
+          </Button>
+        </nav>
       </header>
 
       <Toolbar>
@@ -99,13 +105,9 @@ const App = ({ state }) => {
         </Group>
 
         <Group title="Save image">
-          <button onClick={() => E.dispatch({ type: 'save-image' })}
-                  className="button--primary">
-            Save image to disk
-          </button>
-        </Group>
-
-        <Group title="Stats">
+          <Button action={() => E.dispatch({ type: 'save-image' })}>
+            Save image
+          </Button>
         </Group>
       </section>
 
