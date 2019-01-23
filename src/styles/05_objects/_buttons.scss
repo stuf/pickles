@@ -1,5 +1,9 @@
 .button {
   @include button;
+
+  &.button--small {
+    font-size: 1rem;
+  }
 }
 
 .button {
@@ -9,5 +13,9 @@
 
   .button--secondary {
     @include button--secondary;
+  }
+
+  .button--square {
+    @include button--square();
   }
 }

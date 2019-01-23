@@ -10,13 +10,11 @@ import * as M from './meta';
 import * as H from './utils';
 import Editor from './editor';
 import Toolbar from './toolbar';
-import { IconType } from './constants';
 import { Button } from './components/ui';
 import {
   Alert,
   ColorGrid,
   Group,
-  Icon,
   StatusBar,
   StatusBarItem,
 } from './components';
@@ -89,8 +87,18 @@ const App = ({ state }) => {
       </header>
 
       <Toolbar>
-        <Icon name={IconType.EDIT} />
-        <Icon name={IconType.CROP} />
+        <Button action={x => x}
+                secondary
+                className="button--square"
+                size="small">
+          Edit
+        </Button>
+        <Button action={x => x}
+                secondary
+                className="button--square"
+                size="small">
+          Crop
+        </Button>
       </Toolbar>
 
       <div className="application__main">

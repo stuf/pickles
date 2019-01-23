@@ -34,6 +34,7 @@ $text-color-primary: rgba($color-black, $opacity-secondary);
 $text-color-disabled: rgba($color-black, $opacity-divider);
 
 $text-color-base: $text-color-primary;
+$body-background-base: $color-cool-grey-900;
 
 //
 
@@ -98,6 +99,10 @@ $button-hover-text-color: $color-white;
 $button-disabled-border-color: $color-cool-grey-400;
 $button-disabled-background: $color-cool-grey-300;
 $button-disabled-text-color: $color-cool-grey-100;
+
+$button-secondary-border-color: $color-white;
+$button-secondary-text-color: $color-white;
+$button-secondary-background: $color-cool-grey-700;
 
 // Docked panels
 

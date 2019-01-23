@@ -8,7 +8,7 @@ const Toolbar = ({ children }) =>
         children,
         U.mapElems((child, i) =>
           <div key={i}
-              className="toolbar__icon">
+               className="toolbar__icon">
             {child}
           </div>)
       )}

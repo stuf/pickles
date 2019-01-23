@@ -4,7 +4,8 @@
 .toolbar {}
 
 .toolbar__icon-grid {
-  @include square-grid($square-grid-size-medium);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .toolbar__icon {
@@ -12,6 +13,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  flex: 1;
 }
 
 .toolbar__icon .icon {

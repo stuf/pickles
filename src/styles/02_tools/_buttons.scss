@@ -31,5 +31,12 @@
 }
 
 @mixin button--secondary {
+  border: solid 1px $button-secondary-border-color;
+  background-color: $button-secondary-background;
+  color: $button-secondary-text-color;
+}
 
+@mixin button--square($size: 6rem) {
+  width: $size;
+  height: $size;
 }
